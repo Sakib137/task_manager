@@ -1,21 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/screen/forgot_email_screen.dart';
-import 'package:task_manager/ui/screen/sign_up_screen.dart';
+import 'package:task_manager/ui/screen/sign_in_screen.dart';
 import 'package:task_manager/ui/utills/app_colour.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
-  static const String name = '/sign_in';
+  static const String name = '/sign_up';
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailTEcontroller = TextEditingController();
+  final TextEditingController _firstNameTEcontroller = TextEditingController();
+  final TextEditingController _lastNameTEcontroller = TextEditingController();
+  final TextEditingController _phoneTEcontroller = TextEditingController();
   final TextEditingController _passwordTEcontroller = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
@@ -35,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   const SizedBox(
                     height: 100,
                   ),
-                  Text("Get Started With", style: textTheme.titleLarge),
+                  Text("Join With Us", style: textTheme.titleLarge),
                   const SizedBox(
                     height: 24,
                   ),
@@ -44,6 +46,34 @@ class _SignInScreenState extends State<SignInScreen> {
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       hintText: "Email",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextFormField(
+                    controller: _firstNameTEcontroller,
+                    decoration: const InputDecoration(
+                      hintText: "First Name",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextFormField(
+                    controller: _lastNameTEcontroller,
+                    decoration: const InputDecoration(
+                      hintText: "Last Name",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextFormField(
+                    controller: _phoneTEcontroller,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      hintText: "Phone",
                     ),
                   ),
                   const SizedBox(
@@ -69,14 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   Center(
                     child: Column(
                       children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, ForgotEmailScreen.name);
-                          },
-                          child: const Text("Forgot Password?"),
-                        ),
-                        _buildSignUpSection(),
+                        _buildSignInSection(),
                       ],
                     ),
                   ),
@@ -89,21 +112,21 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Widget _buildSignUpSection() {
+  Widget _buildSignInSection() {
     return RichText(
       text: TextSpan(
-          text: "Don't have an account? ",
+          text: "Already have an account? ",
           style: const TextStyle(
               color: Colors.black54, fontWeight: FontWeight.w100),
           children: [
             TextSpan(
-                text: "Sign Up",
+                text: "Sign In",
                 style: const TextStyle(
                   color: AppColour.themeColor,
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    Navigator.pushNamed(context, SignUpScreen.name);
+                    Navigator.pushNamed(context, SignInScreen.name);
                   }),
           ]),
     );
@@ -112,6 +135,9 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void dispose() {
     _emailTEcontroller.dispose();
+    _firstNameTEcontroller.dispose();
+    _lastNameTEcontroller.dispose();
+    _phoneTEcontroller.dispose();
     _passwordTEcontroller.dispose();
     super.dispose();
   }

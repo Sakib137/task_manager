@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screen/forgot_email_screen.dart';
+import 'package:task_manager/ui/screen/sign_up_screen.dart';
 import 'package:task_manager/ui/screen/splash_screen.dart';
 import 'package:task_manager/ui/screen/sign_in_screen.dart';
 import 'package:task_manager/ui/utills/app_colour.dart';
@@ -47,6 +49,10 @@ class TaskManagerApp extends StatelessWidget {
           widget = const SplashScreen();
         } else if (settings.name == SignInScreen.name) {
           widget = const SignInScreen();
+        } else if (settings.name == SignUpScreen.name) {
+          widget = const SignUpScreen();
+        } else if (settings.name == ForgotEmailScreen.name) {
+          widget = const ForgotEmailScreen();
         }
         return MaterialPageRoute(
           builder: (_) => widget,
