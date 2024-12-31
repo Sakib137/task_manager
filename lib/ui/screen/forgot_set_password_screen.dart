@@ -15,7 +15,10 @@ class ForgotSetPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotSetPasswordScreen extends State<ForgotSetPasswordScreen> {
-  final TextEditingController _passwordTEcontroller = TextEditingController();
+  final TextEditingController _newPasswordTEcontroller =
+      TextEditingController();
+  final TextEditingController _confirmPasswordTEcontroller =
+      TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
@@ -35,27 +38,24 @@ class _ForgotSetPasswordScreen extends State<ForgotSetPasswordScreen> {
                     height: 100,
                   ),
                   Text("Set Password", style: textTheme.titleLarge),
-                  const Text(
+                  Text(
                     "Minumum length password 8 character with letter and number combination",
-                    style: TextStyle(
-                        color: Colors.black54, fontWeight: FontWeight.w400),
+                    style: textTheme.titleSmall,
                   ),
                   const SizedBox(
                     height: 24,
                   ),
                   TextFormField(
-                    obscureText: true,
-                    controller: _passwordTEcontroller,
+                    controller: _newPasswordTEcontroller,
                     decoration: const InputDecoration(
-                      hintText: "Password",
+                      hintText: "New Password",
                     ),
                   ),
                   const SizedBox(
                     height: 24,
                   ),
                   TextFormField(
-                    obscureText: true,
-                    controller: _passwordTEcontroller,
+                    controller: _confirmPasswordTEcontroller,
                     decoration: const InputDecoration(
                       hintText: "Confirm Password",
                     ),
@@ -108,7 +108,8 @@ class _ForgotSetPasswordScreen extends State<ForgotSetPasswordScreen> {
 
   @override
   void dispose() {
-    _passwordTEcontroller.dispose();
+    _newPasswordTEcontroller.dispose();
+    _confirmPasswordTEcontroller.dispose();
     super.dispose();
   }
 }

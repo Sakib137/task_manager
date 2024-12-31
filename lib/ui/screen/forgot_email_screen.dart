@@ -35,10 +35,9 @@ class _ForgotEmailScreen extends State<ForgotEmailScreen> {
                     height: 100,
                   ),
                   Text("Your Email Address", style: textTheme.titleLarge),
-                  const Text(
+                  Text(
                     "A six digit verification pin will send to your email address",
-                    style: TextStyle(
-                        color: Colors.black54, fontWeight: FontWeight.w400),
+                    style: textTheme.titleSmall,
                   ),
                   const SizedBox(
                     height: 24,

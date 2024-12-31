@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screen/forgot_email_screen.dart';
+import 'package:task_manager/ui/screen/main_bottom_nav_screen.dart';
 import 'package:task_manager/ui/screen/sign_up_screen.dart';
 import 'package:task_manager/ui/utills/app_colour.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
@@ -60,7 +61,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     height: 24,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, MainBottomNavScreen.name);
+                    },
                     child: const Icon(Icons.arrow_forward_rounded),
                   ),
                   const SizedBox(

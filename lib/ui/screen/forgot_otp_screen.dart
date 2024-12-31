@@ -36,10 +36,9 @@ class _ForgotOtpScreen extends State<ForgotOtpScreen> {
                     height: 100,
                   ),
                   Text("PIN Verification", style: textTheme.titleLarge),
-                  const Text(
+                  Text(
                     "A six digit verification pin has been sent to your email address",
-                    style: TextStyle(
-                        color: Colors.black54, fontWeight: FontWeight.w400),
+                    style: textTheme.titleSmall,
                   ),
                   const SizedBox(
                     height: 24,
