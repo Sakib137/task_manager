@@ -1,21 +1,22 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/screen/forgot_otp_screen.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:task_manager/ui/screen/forgot_set_password_screen.dart';
 import 'package:task_manager/ui/screen/sign_in_screen.dart';
 import 'package:task_manager/ui/utills/app_colour.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
-class ForgotEmailScreen extends StatefulWidget {
-  const ForgotEmailScreen({super.key});
+class ForgotOtpScreen extends StatefulWidget {
+  const ForgotOtpScreen({super.key});
 
-  static const String name = '/forgot_email';
+  static const String name = '/forgot_otp';
 
   @override
-  State<ForgotEmailScreen> createState() => _ForgotEmailScreen();
+  State<ForgotOtpScreen> createState() => _ForgotOtpScreen();
 }
 
-class _ForgotEmailScreen extends State<ForgotEmailScreen> {
-  final TextEditingController _emailTEcontroller = TextEditingController();
+class _ForgotOtpScreen extends State<ForgotOtpScreen> {
+  final TextEditingController _otpTEcontroller = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
@@ -34,31 +35,25 @@ class _ForgotEmailScreen extends State<ForgotEmailScreen> {
                   const SizedBox(
                     height: 100,
                   ),
-                  Text("Your Email Address", style: textTheme.titleLarge),
+                  Text("PIN Verification", style: textTheme.titleLarge),
                   const Text(
-                    "A six digit verification pin will send to your email address",
+                    "A six digit verification pin has been sent to your email address",
                     style: TextStyle(
                         color: Colors.black54, fontWeight: FontWeight.w400),
                   ),
                   const SizedBox(
                     height: 24,
                   ),
-                  TextFormField(
-                    controller: _emailTEcontroller,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      hintText: "Email",
-                    ),
-                  ),
+                  _buildPinCodeTextField(context),
                   const SizedBox(
                     height: 24,
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, ForgotOtpScreen.name);
-                    },
-                    child: const Icon(Icons.arrow_forward_rounded),
-                  ),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, ForgotSetPasswordScreen.name);
+                      },
+                      child: const Text("Verify")),
                   const SizedBox(
                     height: 48,
                   ),
@@ -75,6 +70,27 @@ class _ForgotEmailScreen extends State<ForgotEmailScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildPinCodeTextField(BuildContext context) {
+    return PinCodeTextField(
+      keyboardType: TextInputType.number,
+      length: 6,
+      animationType: AnimationType.fade,
+      pinTheme: PinTheme(
+        shape: PinCodeFieldShape.box,
+        borderRadius: BorderRadius.circular(5),
+        fieldHeight: 50,
+        fieldWidth: 40,
+        activeFillColor: Colors.white,
+        inactiveFillColor: Colors.white,
+      ),
+      animationDuration: const Duration(milliseconds: 300),
+      backgroundColor: const Color.fromARGB(255, 233, 239, 243),
+      enableActiveFill: true,
+      controller: _otpTEcontroller,
+      appContext: context,
     );
   }
 
@@ -100,7 +116,7 @@ class _ForgotEmailScreen extends State<ForgotEmailScreen> {
 
   @override
   void dispose() {
-    _emailTEcontroller.dispose();
+    _otpTEcontroller.dispose();
     super.dispose();
   }
 }

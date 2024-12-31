@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screen/forgot_email_screen.dart';
+import 'package:task_manager/ui/screen/forgot_otp_screen.dart';
+import 'package:task_manager/ui/screen/forgot_set_password_screen.dart';
 import 'package:task_manager/ui/screen/sign_up_screen.dart';
 import 'package:task_manager/ui/screen/splash_screen.dart';
 import 'package:task_manager/ui/screen/sign_in_screen.dart';
@@ -53,6 +55,10 @@ class TaskManagerApp extends StatelessWidget {
           widget = const SignUpScreen();
         } else if (settings.name == ForgotEmailScreen.name) {
           widget = const ForgotEmailScreen();
+        } else if (settings.name == ForgotOtpScreen.name) {
+          widget = const ForgotOtpScreen();
+        } else if (settings.name == ForgotSetPasswordScreen.name) {
+          widget = const ForgotSetPasswordScreen();
         }
         return MaterialPageRoute(
           builder: (_) => widget,

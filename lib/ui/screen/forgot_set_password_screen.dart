@@ -5,17 +5,17 @@ import 'package:task_manager/ui/screen/sign_in_screen.dart';
 import 'package:task_manager/ui/utills/app_colour.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
-class ForgotEmailScreen extends StatefulWidget {
-  const ForgotEmailScreen({super.key});
+class ForgotSetPasswordScreen extends StatefulWidget {
+  const ForgotSetPasswordScreen({super.key});
 
-  static const String name = '/forgot_email';
+  static const String name = '/forgot_set_password';
 
   @override
-  State<ForgotEmailScreen> createState() => _ForgotEmailScreen();
+  State<ForgotSetPasswordScreen> createState() => _ForgotSetPasswordScreen();
 }
 
-class _ForgotEmailScreen extends State<ForgotEmailScreen> {
-  final TextEditingController _emailTEcontroller = TextEditingController();
+class _ForgotSetPasswordScreen extends State<ForgotSetPasswordScreen> {
+  final TextEditingController _passwordTEcontroller = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
@@ -34,9 +34,9 @@ class _ForgotEmailScreen extends State<ForgotEmailScreen> {
                   const SizedBox(
                     height: 100,
                   ),
-                  Text("Your Email Address", style: textTheme.titleLarge),
+                  Text("Set Password", style: textTheme.titleLarge),
                   const Text(
-                    "A six digit verification pin will send to your email address",
+                    "Minumum length password 8 character with letter and number combination",
                     style: TextStyle(
                         color: Colors.black54, fontWeight: FontWeight.w400),
                   ),
@@ -44,20 +44,28 @@ class _ForgotEmailScreen extends State<ForgotEmailScreen> {
                     height: 24,
                   ),
                   TextFormField(
-                    controller: _emailTEcontroller,
-                    keyboardType: TextInputType.emailAddress,
+                    obscureText: true,
+                    controller: _passwordTEcontroller,
                     decoration: const InputDecoration(
-                      hintText: "Email",
+                      hintText: "Password",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    controller: _passwordTEcontroller,
+                    decoration: const InputDecoration(
+                      hintText: "Confirm Password",
                     ),
                   ),
                   const SizedBox(
                     height: 24,
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, ForgotOtpScreen.name);
-                    },
-                    child: const Icon(Icons.arrow_forward_rounded),
+                    onPressed: () {},
+                    child: const Text('Confirm'),
                   ),
                   const SizedBox(
                     height: 48,
@@ -100,7 +108,7 @@ class _ForgotEmailScreen extends State<ForgotEmailScreen> {
 
   @override
   void dispose() {
-    _emailTEcontroller.dispose();
+    _passwordTEcontroller.dispose();
     super.dispose();
   }
 }
