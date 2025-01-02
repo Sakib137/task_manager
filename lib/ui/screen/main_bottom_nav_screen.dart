@@ -32,13 +32,24 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
             _selectedIndex = index;
             setState(() {});
           },
+          backgroundColor: Colors.green,
           destinations: const [
             NavigationDestination(
-                icon: Icon(Icons.new_label_outlined), label: "New"),
-            NavigationDestination(icon: Icon(Icons.refresh), label: "Progress"),
-            NavigationDestination(icon: Icon(Icons.done), label: "Completed"),
+              icon: Icon(Icons.new_label_outlined),
+              label: "New",
+            ),
             NavigationDestination(
-                icon: Icon(Icons.cancel_outlined), label: "Cancelled"),
+              icon: Icon(Icons.refresh),
+              label: "Progress",
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.done),
+              label: "Completed",
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.cancel_outlined),
+              label: "Cancelled",
+            ),
           ]),
     );
   }
