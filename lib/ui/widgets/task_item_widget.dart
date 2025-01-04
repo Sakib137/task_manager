@@ -16,7 +16,7 @@ class taskItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("Item subtitle"),
-            const Text("Date: 12-12-12"),
+            const Text("Date: 01-01-2025"),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
