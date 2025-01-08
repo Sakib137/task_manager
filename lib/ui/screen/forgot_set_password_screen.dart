@@ -48,7 +48,7 @@ class _ForgotSetPasswordScreen extends State<ForgotSetPasswordScreen> {
                   TextFormField(
                     controller: _newPasswordTEcontroller,
                     decoration: const InputDecoration(
-                      hintText: "New Password",
+                      labelText: "New Password",
                     ),
                   ),
                   const SizedBox(
@@ -57,7 +57,7 @@ class _ForgotSetPasswordScreen extends State<ForgotSetPasswordScreen> {
                   TextFormField(
                     controller: _confirmPasswordTEcontroller,
                     decoration: const InputDecoration(
-                      hintText: "Confirm Password",
+                      labelText: "Confirm Password",
                     ),
                   ),
                   const SizedBox(
@@ -91,7 +91,7 @@ class _ForgotSetPasswordScreen extends State<ForgotSetPasswordScreen> {
       text: TextSpan(
           text: "Have an account? ",
           style: const TextStyle(
-              color: Colors.black54, fontWeight: FontWeight.w100),
+              color: Colors.black54, fontWeight: FontWeight.w300),
           children: [
             TextSpan(
                 text: "Sign In",

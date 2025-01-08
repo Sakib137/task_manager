@@ -98,7 +98,7 @@ class _ForgotOtpScreen extends State<ForgotOtpScreen> {
       text: TextSpan(
           text: "Have an account? ",
           style: const TextStyle(
-              color: Colors.black54, fontWeight: FontWeight.w100),
+              color: Colors.black54, fontWeight: FontWeight.w300),
           children: [
             TextSpan(
                 text: "Sign In",

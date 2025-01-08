@@ -50,7 +50,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     controller: _emailTEcontroller,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
-                      hintText: "Email",
+                      labelText: "Email",
                     ),
                   ),
                   const SizedBox(
@@ -59,7 +59,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   TextFormField(
                     controller: _firstNameTEcontroller,
                     decoration: const InputDecoration(
-                      hintText: "First Name",
+                      labelText: "First Name",
                     ),
                   ),
                   const SizedBox(
@@ -68,7 +68,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   TextFormField(
                     controller: _lastNameTEcontroller,
                     decoration: const InputDecoration(
-                      hintText: "Last Name",
+                      labelText: "Last Name",
                     ),
                   ),
                   const SizedBox(
@@ -78,7 +78,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     controller: _phoneTEcontroller,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      hintText: "Phone",
+                      labelText: "Phone",
                     ),
                   ),
                   const SizedBox(
@@ -88,7 +88,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     controller: _passwordTEcontroller,
                     obscureText: true,
                     decoration: const InputDecoration(
-                      hintText: "Password",
+                      labelText: "Password",
                     ),
                   ),
                   const SizedBox(

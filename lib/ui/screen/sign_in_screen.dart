@@ -1,10 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/services/network_caller.dart';
+import 'package:task_manager/data/utils/urls.dart';
 import 'package:task_manager/ui/screen/forgot_email_screen.dart';
 import 'package:task_manager/ui/screen/main_bottom_nav_screen.dart';
 import 'package:task_manager/ui/screen/sign_up_screen.dart';
 import 'package:task_manager/ui/utills/app_colour.dart';
+import 'package:task_manager/ui/widgets/circulart_progress_indicator_field.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
+import 'package:task_manager/ui/widgets/show_snackbar_message_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -19,6 +23,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _emailTEcontroller = TextEditingController();
   final TextEditingController _passwordTEcontroller = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  bool _signInProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,29 +47,47 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   TextFormField(
                     controller: _emailTEcontroller,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
-                      hintText: "Email",
+                      labelText: "Email",
                     ),
+                    validator: (String? value) {
+                      if (value?.trim().isEmpty ?? true) {
+                        return "Enter a valid email";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
                   const SizedBox(
                     height: 16,
                   ),
                   TextFormField(
                     controller: _passwordTEcontroller,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     obscureText: true,
                     decoration: const InputDecoration(
-                      hintText: "Password",
+                      labelText: "Password",
                     ),
+                    validator: (String? value) {
+                      if (value?.trim().isEmpty ?? true) {
+                        return "Enter password";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
                   const SizedBox(
                     height: 24,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, MainBottomNavScreen.name);
-                    },
-                    child: const Icon(Icons.arrow_forward_rounded),
+                  Visibility(
+                    visible: _signInProgress == false,
+                    replacement: const CirculartProgressIndicatorField(),
+                    child: ElevatedButton(
+                      onPressed: _onTapSingInButton,
+                      child: const Icon(Icons.arrow_forward_rounded),
+                    ),
                   ),
                   const SizedBox(
                     height: 48,
@@ -92,12 +115,41 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
+  void _onTapSingInButton() {
+    if (_formkey.currentState!.validate()) {
+      _SignIn();
+    } else {}
+  }
+
+  Future<void> _SignIn() async {
+    _signInProgress = true;
+    setState(() {});
+
+    Map<String, dynamic> requestBody = {
+      "email": _emailTEcontroller.text.trim(),
+      "password": _passwordTEcontroller.text,
+    };
+
+    final NetworkResponse response = await NetworkCaller.postRequest(
+      url: Urls.logInUrl,
+      body: requestBody,
+    );
+
+    if (response.isSuccess) {
+      Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
+    } else {
+      _signInProgress = false;
+      setState(() {});
+      showSnackbarMessageText(context, response.errorMessage);
+    }
+  }
+
   Widget _buildSignUpSection() {
     return RichText(
       text: TextSpan(
           text: "Don't have an account? ",
           style: const TextStyle(
-              color: Colors.black54, fontWeight: FontWeight.w100),
+              color: Colors.black54, fontWeight: FontWeight.w300),
           children: [
             TextSpan(
                 text: "Sign Up",

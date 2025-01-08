@@ -46,7 +46,7 @@ class _ForgotEmailScreen extends State<ForgotEmailScreen> {
                     controller: _emailTEcontroller,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
-                      hintText: "Email",
+                      labelText: "Email",
                     ),
                   ),
                   const SizedBox(
@@ -82,7 +82,7 @@ class _ForgotEmailScreen extends State<ForgotEmailScreen> {
       text: TextSpan(
           text: "Have an account? ",
           style: const TextStyle(
-              color: Colors.black54, fontWeight: FontWeight.w100),
+              color: Colors.black54, fontWeight: FontWeight.w300),
           children: [
             TextSpan(
                 text: "Sign In",
