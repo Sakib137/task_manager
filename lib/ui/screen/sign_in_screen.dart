@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/models/user_model.dart';
 import 'package:task_manager/data/services/network_caller.dart';
 import 'package:task_manager/data/utils/urls.dart';
+import 'package:task_manager/ui/controllers/auth_controller.dart';
 import 'package:task_manager/ui/screen/forgot_email_screen.dart';
 import 'package:task_manager/ui/screen/main_bottom_nav_screen.dart';
 import 'package:task_manager/ui/screen/sign_up_screen.dart';
@@ -136,11 +138,19 @@ class _SignInScreenState extends State<SignInScreen> {
     );
 
     if (response.isSuccess) {
+      String token = response.responseData!["token"];
+      UserModel userModel = UserModel.fromjson(response.responseData!["data"]);
+      await AuthController.saveUserData(token, userModel);
       Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
     } else {
       _signInProgress = false;
       setState(() {});
-      showSnackbarMessageText(context, response.errorMessage);
+      if (response.statusCode == 401) {
+        showSnackbarMessageText(
+            context, "Email/Password is Invalid. Try again!!");
+      } else {
+        showSnackbarMessageText(context, response.errorMessage);
+      }
     }
   }
 

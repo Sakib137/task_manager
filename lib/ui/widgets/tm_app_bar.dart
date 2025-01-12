@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/controllers/auth_controller.dart';
+import 'package:task_manager/ui/screen/sign_in_screen.dart';
 import 'package:task_manager/ui/screen/update_profile_screen.dart';
 import 'package:task_manager/ui/utills/app_colour.dart';
 
@@ -31,13 +33,13 @@ class TMAppbar extends StatelessWidget implements PreferredSizeWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Md Sakib Al Hasan",
+                    AuthController.userModel?.fullName ?? "",
                     style: textTheme.titleSmall?.copyWith(
                       color: Colors.white,
                     ),
                   ),
                   Text(
-                    "mdsakib124202@gmail.com",
+                    AuthController.userModel?.email ?? "",
                     style: textTheme.titleSmall?.copyWith(
                       color: Colors.white,
                     ),
@@ -47,7 +49,10 @@ class TMAppbar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await AuthController.cleaUserData();
+              Navigator.pushReplacementNamed(context, SignInScreen.name);
+            },
             icon: const Icon(Icons.logout_outlined),
           ),
         ],
